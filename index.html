@@ -1,0 +1,118 @@
+<div class="col-md-8 order-md-1">
+  <h4 class="mb-3">Sign Up</h4>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmitForm()">
+
+    <div formGroupName="basicInfo">
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <div class="form-group">
+            <label for="FirstName">First Name</label>
+            <input type="text" id="basic-data-name" class="form-control" formControlName="firstName">
+          </div>
+
+          <span class="help-block"
+            *ngIf="!signupForm.get('basicInfo.firstName').valid && signupForm.get('basicInfo.firstName').touched">
+            Please enter a valid first name
+          </span>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <div class="form-group">
+            <label for="LastName">Last Name</label>
+            <input type="text" class="form-control" formControlName="lastName">
+          </div>
+
+          <span class="help-block"
+            *ngIf="!signupForm.get('basicInfo.lastName').valid && signupForm.get('basicInfo.lastName').touched">
+            Please enter a valid last name
+          </span>
+        </div>
+      </div>
+      
+
+      <div class="mb-3">
+        <div class="form-group">
+          <label for="DoB">Date Of Birth</label>
+          <input type="date" class="form-control" formControlName="dob">
+        </div>
+
+        <span class="help-block"
+          *ngIf="!signupForm.get('basicInfo.dob').valid && signupForm.get('basicInfo.dob').touched">
+          Please enter a valid date of birth
+        </span>
+
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" formControlName="email">
+      </div>
+
+      <span class="help-block" *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">
+        Please enter a valid email
+      </span>
+    </div>
+
+
+    <div id="user-education-data" formGroupName="educationalInfo">
+      <div class="mb-3">
+        <div class="form-group">
+          <label for="standard">Standard</label>
+          <input type="number" min=0 max=10 class="form-control" formControlName="standard">
+        </div>
+
+        <span class="help-block"
+          *ngIf="!signupForm.get('educationalInfo.standard').valid && signupForm.get('educationalInfo.standard').touched">
+          Please select a valid standard
+        </span>
+      </div>
+
+      <div class="mb-3">
+        <div class="form-group">
+          <label for="schoolName">School Name</label>
+          <input type="text" class="form-control" formControlName="schoolName">
+        </div>
+
+        <span class="help-block"
+          *ngIf="!signupForm.get('educationalInfo.schoolName').valid && signupForm.get('educationalInfo.schoolName').touched">
+          Please enter a valid School Name
+        </span>
+      </div>
+    </div>
+
+
+    <div id="user-signup-data" formGroupName="signupInfo">
+      <div class="mb-3">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" formControlName="username">
+        </div>
+
+        <span class="help-block"
+
+          *ngIf="!signupForm.get('signupInfo.username').valid && signupForm.get('signupInfo.username').touched && isValidResponse">
+          Please enter a valid user name!
+        </span>
+        <span class="help-block"
+        *ngIf="!signupForm.get('signupInfo.username').valid && signupForm.get('signupInfo.username').touched &&  !isValidResponse">
+        Please change your username as it is already taken by someone
+      </span>
+
+      </div>
+
+      <div class="mb-3">
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" formControlName="password">
+
+          <span class="help-block"
+            *ngIf="!signupForm.get('signupInfo.password').valid && signupForm.get('signupInfo.password').touched">
+            Please enter a valid password.
+          </span>
+        </div>
+      </div>
+      <button class="btn btn-info" [disabled]="((!signupForm.valid) || (signupForm.valid && oneTimeSubmit))">Submit Form</button>
+
+    </div>
